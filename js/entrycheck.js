@@ -2,10 +2,12 @@
 
 
 function formCheck(){
-    var flag = 0;
+    let flag = 0;
 
     // 入力必須項目が入力されているかチェック
     //お名前系
+
+    /*
     if( document . entryinfo . familykana . value == ""){
         flag = 1;
         document . getElementById( 'noticefamilykana' ) . style . display = "block"; //警告文を表示
@@ -19,6 +21,7 @@ function formCheck(){
     }else{
         document . getElementById( 'noticegivenkana' ) . style . display = "none";
     }
+    */
 
     if(document . entryinfo . familyname . value == "" ){
         flag = 1;
@@ -133,13 +136,6 @@ function formCheck(){
         document . getElementById( 'noticepassword' ) . style . display = "none";
     }
 
-    if( document . entryinfo . password . value != document . entryinfo . repassword . value ){
-        flag = 1;
-        document . getElementById( 'misspassword' ) . style . display = "block";
-    }else{
-        document . getElementById( 'misspassword' ) . style . display = "none";
-    }
-
     if (document.entryinfo.password.value.length <= 7) {
         flag = 1;
         document.getElementById('littlepassword').style.display = "block";
@@ -147,6 +143,13 @@ function formCheck(){
         document.getElementById('littlepassword').style.display = "none";
     }
 
+
+    if( document . entryinfo . password . value != document . entryinfo . repassword . value ){
+        flag = 1;
+        document . getElementById( 'misspassword' ) . style . display = "block";
+    }else{
+        document . getElementById( 'misspassword' ) . style . display = "none";
+    }
 
     let ary = document.entryinfo.password.value;
     let arypas = ary.match(/[a-zA-Z0-9]{8,}/g);
@@ -168,7 +171,7 @@ function formCheck(){
 
 
 
-
+    flag = 1;
     if( flag == 1){ // 入力必須項目に未入力があった場合
         window . alert( '必須項目は全て入力して下さい。' ); // アラートを表示
         return false; // 送信中止
@@ -177,4 +180,3 @@ function formCheck(){
     }
 
 }
-// -->
