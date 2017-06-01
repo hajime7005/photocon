@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+$_SESSION["logined"] = true;
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -26,11 +26,9 @@
 
     while($row = $stmh -> fetch(PDO::FETCH_ASSOC)) {
     $id = $row['id'];
-    $id = $row['name'];
-    $id = $row['usename'];
-    $id = $row['address'];
-
-
+    $name = $row['name'];
+    $usename = $row['usename'];
+    $address = $row['address'];
 
     }
 

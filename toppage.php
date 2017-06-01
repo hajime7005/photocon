@@ -1,3 +1,10 @@
+
+<?php
+if(isset($_POST['logout'])) {
+    session_destroy();
+}
+?>
+
 <?php
 
 session_start();
@@ -22,11 +29,19 @@ if(isset($_SESSION["logined"])){
 
 <a href="./html/entry.html">応募者登録</a>
 <br><br>
+
 <?php
 if (!($logined)){
 ?>
-    <a href="./html/login.html">ログイン</a>
+    <input type="button" value="ログイン" onClick="location.href='./html/login.html'">
+
     <?php
+}else{
+?>
+    <form action="toppage.php" method="post">
+        <input type="submit" name="logout" value="ログアウト" />
+    </form>
+<?php
 }
 ?>
 

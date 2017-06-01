@@ -7,7 +7,11 @@
 
 <BODY bgcolor="#FFFFFF" text="#000000">
 <FONT size="4">ファイルアップロードのテスト</FONT>
+<!--
 <FORM name="form1" method="post" action="entruphotoview.php" enctype="multipart/form-data">
+-->
+<FORM name="form1" method="post" action="createthumbnail.php" enctype="multipart/form-data">
+
     画像：
     <INPUT type="file" name="uploadfile">
     <BR>
