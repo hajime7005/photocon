@@ -1,6 +1,17 @@
 
 <?php
 if(isset($_POST['logout'])) {
+    session_start();
+
+    $_SESSION = array();
+
+    if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+        );
+    }
     session_destroy();
 }
 ?>
@@ -20,8 +31,8 @@ if(isset($_SESSION["logined"])){
 <html>
 <head>
 	<meta name="author" content="ニシベ　ハジメ">
-    <meta charset="UTF-8">
-    <title>笑顔のの写真館(仮)</title>
+<meta charset="UTF-8">
+<title>笑顔のの写真館(仮)</title>
 </head>
 <body>
 <h1>笑顔の写真館へようこそ</h1>
@@ -32,19 +43,22 @@ if(isset($_SESSION["logined"])){
 
 <?php
 if (!($logined)){
-?>
+    ?>
     <input type="button" value="ログイン" onClick="location.href='./html/login.html'">
 
     <?php
 }else{
-?>
+    ?>
     <form action="toppage.php" method="post">
         <input type="submit" name="logout" value="ログアウト" />
     </form>
-<?php
+    <?php
 }
 ?>
-
-
+<br>
+<a href="../dummy/inin.php">開発用ログイン</a>
 </body>
 </html>
+
+
+

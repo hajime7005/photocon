@@ -151,6 +151,7 @@ function formCheck(){
         document . getElementById( 'misspassword' ) . style . display = "none";
     }
 
+/*
     let ary = document.entryinfo.password.value;
     let arypas = ary.match(/[a-zA-Z0-9]{8,}/g);
     if (arypas != null) {
@@ -163,15 +164,10 @@ function formCheck(){
     } else {
         document.getElementById('wrongpassword').style.display = "none";
     }
+*/
 
 
 
-
-
-
-
-
-    flag = 1;
     if( flag == 1){ // 入力必須項目に未入力があった場合
         window . alert( '必須項目は全て入力して下さい。' ); // アラートを表示
         return false; // 送信中止
