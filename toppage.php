@@ -44,17 +44,27 @@ if(isset($_SESSION["logined"])){
 <?php
 if (!($logined)){
     ?>
-    <input type="button" value="ログイン" onClick="location.href='./html/login.html'">
+    <input type="button" value="ログイン" onClick="location.href='./html/login.html'"><br>
 
     <?php
 }else{
     ?>
     <form action="toppage.php" method="post">
-        <input type="submit" name="logout" value="ログアウト" />
+        <input type="submit" name="logout" value="ログアウト" /><br>
     </form>
     <?php
 }
 ?>
+
+<?php
+if ($logined){
+    ?>
+    <a href="php/upload.php">写真を投稿する</a><BR>
+    <?php
+}
+?>
+
+
 <br>
 <a href="../dummy/inin.php">開発用ログイン</a>
 </body>
