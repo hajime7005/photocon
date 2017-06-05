@@ -11,3 +11,13 @@ CREATE TABLE userlist(
 );
 
 
+
+
+CREATE TABLE contributions(
+	id INT  AUTO_INCREMENT,
+	 filename VARCHAR(50) ,
+  	 usename VARCHAR(20),
+  	uploaddate timestamp not null default current_timestamp,
+  	PRIMARY KEY (id)
+);
+

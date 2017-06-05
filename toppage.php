@@ -66,7 +66,7 @@ if ($logined){
 
 
 <br>
-<a href="../dummy/inin.php">開発用ログイン</a>
+<a href="dummy/divelopperlogin.php">開発用ログイン</a>
 </body>
 </html>
 

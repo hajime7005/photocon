@@ -28,7 +28,7 @@
         $pd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $pd->beginTransaction();
 
-        $stmh = $pd -> prepare("SELECT id , pass FROM userlist WHERE :usename = usename ");
+        $stmh = $pd -> prepare("SELECT id , pass , usename FROM userlist WHERE :usename = usename ");
         $stmh -> bindValue(':usename', $_POST["nickname"], PDO::PARAM_STR);
 
         $stmh -> execute();
@@ -41,6 +41,7 @@
         while($row = $stmh -> fetch(PDO::FETCH_ASSOC)) {
             $usrid = $row['id'];
             $hashval = $row['pass'];
+            $usrname = $row['usename'];
             $cnt++;
         }
 
@@ -54,7 +55,7 @@
                 session_start();
                 $_SESSION["logined"] = true;
                 $_SESSION["usrid"] = $usrid;
-
+                $_SESSION["nickname"] = $usrname;
                 print '<a href="../toppage.php">トップページへ戻る</a>';
             }
         }else{

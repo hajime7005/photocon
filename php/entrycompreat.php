@@ -1,10 +1,3 @@
-<?php
-
-session_start();
-
-$_SESSION["logined"] = true;
-?>
-
 
 <!DOCTYPE html>
 <html>
@@ -64,8 +57,12 @@ try {
     <h1>参加者登録が完了しました。</h1>
 
     <input type="button" value="トップページへ戻る" onClick="location.href='../toppage.php'">
-
-<?php
+    <?php
+    session_start();
+    $_SESSION["logined"] = true;
+    $_SESSION["nickname"] = $_POST["nickname"];
+    ?>
+    <?php
 } catch (PDOException $Exception) {
     $pdo->rollBack();
     print "エラー：" . $Exception->getMessage();
