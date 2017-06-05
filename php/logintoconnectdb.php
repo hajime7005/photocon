@@ -14,7 +14,7 @@
     try {
 
 
-        $db_user = "photocom";	// ユーザー名
+        $db_user = "photocon";	// ユーザー名
         $db_pass = "ju78iklo";	// パスワード
         $db_host = "localhost";	// ホスト名
         $db_name = "photocon";	// データベース名
@@ -28,26 +28,35 @@
         $pd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $pd->beginTransaction();
 
-        $stmh = $pd -> prepare("SELECT id FROM entrant WHERE :usename = usename ");
+        $stmh = $pd -> prepare("SELECT id , pass FROM userlist WHERE :usename = usename ");
         $stmh -> bindValue(':usename', $_POST["nickname"], PDO::PARAM_STR);
 
         $stmh -> execute();
         $pd -> commit();
 
         $cnt = 0;
+
+        $usrid;
+        $hashval;
         while($row = $stmh -> fetch(PDO::FETCH_ASSOC)) {
             $usrid = $row['id'];
+            $hashval = $row['pass'];
             $cnt++;
         }
 
+        $pwd = $_POST["password"];
         if($cnt == 1){
-            print 'ログインが成功しました。';
-            session_start();
-            $_SESSION["logined"] = true ;
-            $_SESSION["usrid"] = $usrid;
-            ?>
-            <a href="../toppage.php">トップページへ戻る</a>
-<?php
+            if(password_verify($pwd, $hashval)){
+                print 'パスワードが違います';
+                print '<a href="../toppage.php">トップページへ戻る</a>';
+            }else {
+                print 'ログインが成功しました。';
+                session_start();
+                $_SESSION["logined"] = true;
+                $_SESSION["usrid"] = $usrid;
+
+                print '<a href="../toppage.php">トップページへ戻る</a>';
+            }
         }else{
             print 'ログインに失敗しました。';
             print '<a href="../toppage.php">トップページへ戻る</a>';

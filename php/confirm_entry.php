@@ -98,6 +98,7 @@
     //生年月日
     print "<INPUT type=\"hidden\" name=\"birth\" value = \"${birthyear}./.${birthmonth}./.${birthday}\" >";
 
+
     ?>
 
 

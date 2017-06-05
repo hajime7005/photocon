@@ -1,23 +1,32 @@
-
-<HTML>
+<?php
+session_start();
+?>
 <HEAD>
     <TITLE>PHPのテスト</TITLE>
 </HEAD>
 <BODY>
 <?php
+
+
+$time = date('ymdHis' ,$timestamp = time());
+
+
 $resizeX   = 150;
-$thumbnail_name = "t_" . $_FILES["uploadfile"]["name"] ;
-$file_dir  = 'C:\xampp\htdocs\photoCon\htdocs\image\\';// Windows
+//$thumbnail_name = "t_" . $_FILES["uploadfile"]["name"] ;
+$thumbnail_name = "t_"   . "_" . $time . ".jpg" ;
+
+$file_dir  = 'C:\xampp\htdocs\qhotocon\photocon\image\\';// Windows
 //$file_dir  = '/Applications/XAMPP/xamppfiles/htdocs/image/'; // Mac
 //$file_dir  = '/opt/lampp/htdocs/image/';// Linux
-$file_path = $file_dir . $_FILES["uploadfile"]["name"];
-$thumbnail_file_path = $file_dir . $thumbnail_name;
+$file_path = $file_dir  . $time;
+$thumbnail_file_path = $file_dir . $thumbnail_name . ".jpg";
+
 
 if (move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $file_path)) {
 
     $img_dir   = "../image/";
-    $img_path  = $img_dir. $_FILES["uploadfile"]["name"];
-    $thumbnail_img_path = $img_dir . $thumbnail_name;
+    $img_path  = $img_dir. $time;//$_FILES["uploadfile"]["name"];
+    $thumbnail_img_path = $img_dir . $thumbnail_name . ".jpg";
 
     if ( mb_strpos($_FILES['uploadfile']['type'], 'jpeg') ) {
         $gdimg_in = imagecreatefromjpeg($file_path);

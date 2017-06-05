@@ -17,7 +17,7 @@ $_SESSION["logined"] = true;
 
 
 <?php
-$db_user = "photocom";	// ユーザー名
+$db_user = "photocon";	// ユーザー名
 $db_pass = "ju78iklo";	// パスワード
 $db_host = "localhost";	// ホスト名
 $db_name = "photocon";	// データベース名
@@ -38,7 +38,10 @@ try {
 try {
     $pdo->beginTransaction();
 //プレースホルダーを設定してSQL文を作る
-    $sql = "INSERT  INTO entrant (name, usename, address, tel ) VALUES ( :name, :uname, :address, :tel  )";
+    //$sql = "INSERT  INTO entrant (name, usename, address, tel ) VALUES ( :name, :uname, :address, :tel  )";
+    //birthday未実装
+    $sql = "INSERT  INTO userlist (name, usename, address, tel, gender, pass ) 
+            VALUES ( :name, :uname, :address, :tel, :gender, :pass  )";
 //プリペアードステートメントで実行準備をする。
     $stmh = $pdo->prepare($sql);
 //プレースホルダーに設定する値を指示
@@ -46,6 +49,12 @@ try {
     $stmh->bindValue(':uname',  $_POST['nickname'],  PDO::PARAM_STR );
     $stmh->bindValue(':address',  $_POST['address'],  PDO::PARAM_STR );
     $stmh->bindValue(':tel',  $_POST['telnum'],  PDO::PARAM_STR );
+    $stmh->bindValue(':gender',  $_POST['gender'],  PDO::PARAM_STR );
+
+    $passwd = $_POST['passwd'];
+    $hashvalue = password_hash($passwd, PASSWORD_DEFAULT);
+    $stmh->bindValue(':pass',  $hashvalue,  PDO::PARAM_STR );
+
 //ステートメントを実行する
     $stmh->execute();
 //コミット

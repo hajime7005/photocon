@@ -59,7 +59,7 @@ if (!($logined)){
 <?php
 if ($logined){
     ?>
-    <a href="php/upload.php">写真を投稿する</a><BR>
+    <a href="php/mypage.php">マイページ</a><BR>
     <?php
 }
 ?>
