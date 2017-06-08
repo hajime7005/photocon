@@ -12,5 +12,9 @@ session_start();
 
 <a href="../html/upload.html">写真を投稿する。</a><BR>
 
+
+
+
+
 </body>
 </html>

@@ -31,7 +31,7 @@ try {
 try {
     $pdo->beginTransaction();
 //プレースホルダーを設定してSQL文を作る
-    //$sql = "INSERT  INTO entrant (name, usename, address, tel ) VALUES ( :name, :uname, :address, :tel  )";
+
     //birthday未実装
     $sql = "INSERT  INTO userlist (name, usename, address, tel, gender, pass ) 
             VALUES ( :name, :uname, :address, :tel, :gender, :pass  )";

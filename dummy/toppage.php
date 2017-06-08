@@ -61,11 +61,13 @@ if(isset($_SESSION["logined"])){
                 if (!($logined)){
                     ?>
                     <a href="./html/login.html" class="btn btn-default">ログイン</a>
+
                     <?php
                 }else{
                     ?>
                     <form action="toppage.php" method="post">
-                        <input type="submit" name="logout" class="btn btn-default" value="ログアウト">
+                        <input type="button" class="btn btn-default" value="ログアウト">
+                        <input type="submit" name="logout" value="ログアウト" /><br>
                     </form>
                     <?php
                 }
