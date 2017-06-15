@@ -7,8 +7,6 @@
 </head>
 <body>
 
-<h1>開発中</h1>
-
 
 <?php
     try {
@@ -47,11 +45,12 @@
 
         $pwd = $_POST["password"];
         if($cnt == 1){
-            if(password_verify($pwd, $hashval)){
+            if(!(password_verify($pwd, $hashval))){
                 print 'パスワードが違います';
                 print '<a href="../toppage.php">トップページへ戻る</a>';
             }else {
-                print 'ログインが成功しました。';
+                print 'ログインが成功しました。<br>';
+                print 'ようこそ　'.$usrname.'　さん<br>';
                 session_start();
                 $_SESSION["logined"] = true;
                 $_SESSION["usrid"] = $usrid;

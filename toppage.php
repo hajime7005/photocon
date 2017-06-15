@@ -54,63 +54,49 @@ if(isset($_SESSION["logined"])){
         </div>
         <!-- 3.リストの配置 -->
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">本部からのお知らせ</a></li>
-            <li><a href="#">在庫確認</a></li>
+            <li class="active"><a href="toppage.php">トップ</a></li>
+            <li><a href="./html/entry.html">応募者登録</a></li>
+
             <li>
                 <?php
-                if (!($logined)){
+                if ($logined){
                     ?>
-                    <a href="./html/login.html" class="btn btn-default">ログイン</a>
-                    <?php
-                }else{
-                    ?>
-                    <form action="toppage.php" method="post">
-                        <input type="submit" name="logout" class="btn btn-default" value="ログアウト">
-                    </form>
+                    <a href="php/mypage.php">マイページ</a><BR>
                     <?php
                 }
                 ?>
             </li>
+
         </ul>
-        <!-- 4.ボタン -->
-        <button type="button" class="btn btn-default navbar-btn">
-            <span class="glyphicon glyphicon-envelope"></span>
-        </button>
+
+            <?php
+            if (!($logined)){
+                ?>
+
+                <p class="navbar-text navbar-right">
+                <a href="./html/login.html" class="btn btn-default">ログイン</a>
+                </p>
+                <?php
+            }else{
+            ?>
+            <form action="toppage.php" method="post" class="navbar-form navbar-right">
+                <input type="submit" name="logout" class="btn btn-default" value="ログアウト">
+            </form>
+            <?php
+            }
+            ?>
+
+
     </div>
 </nav>
 
 <h1>笑顔の写真館へようこそ</h1>
 
-
-<a href="./html/entry.html">応募者登録</a>
-<br><br>
-
-<?php
-if (!($logined)){
-    ?>
-    <input type="button" value="ログイン" onClick="location.href='./html/login.html'"><br>
-
-    <?php
-}else{
-    ?>
-    <form action="toppage.php" method="post">
-        <input type="submit" name="logout" value="ログアウト" /><br>
-    </form>
-    <?php
-}
-?>
-
-<?php
-if ($logined){
-    ?>
-    <a href="php/mypage.php">マイページ</a><BR>
-    <?php
-}
-?>
-
-
 <br>
 <a href="dummy/divelopperlogin.php">開発用ログイン</a>
+<br>
+<br>
+
 
 
 
