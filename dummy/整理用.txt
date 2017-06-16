@@ -21,3 +21,5 @@ CREATE TABLE contributions(
   	PRIMARY KEY (id)
 );
 
+
+alter table contributions convert to character set utf8 collate utf8_general_ci;
