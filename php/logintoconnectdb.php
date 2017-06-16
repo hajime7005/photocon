@@ -51,10 +51,12 @@
             }else {
                 print 'ログインが成功しました。<br>';
                 print 'ようこそ　'.$usrname.'　さん<br>';
+
                 session_start();
                 $_SESSION["logined"] = true;
                 $_SESSION["usrid"] = $usrid;
                 $_SESSION["nickname"] = $usrname;
+
                 print '<a href="../toppage.php">トップページへ戻る</a>';
             }
         }else{
