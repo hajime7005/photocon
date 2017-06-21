@@ -92,12 +92,15 @@ if(isset($_SESSION["logined"])){
 
 <h1>笑顔の写真館へようこそ</h1>
 
-<br>
+<!--
 <a href="dummy/divelopperlogin.php">開発用ログイン</a>
+-->
 <br>
 <br>
 
-
+<?php
+require_once('./dummy/allview.php');
+?>
 
 
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>

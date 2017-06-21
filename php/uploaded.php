@@ -64,11 +64,13 @@ if (move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $file_path)) {
         try {
             $pdo->beginTransaction();
 
-            $sql = "INSERT  INTO contributions (filename, usename) VALUES ( :filename, :usename)";
+            $sql = "INSERT  INTO contributions (filename, usename, title, comment) VALUES ( :filename, :usename, :title, :comment)";
             $stmh = $pdo->prepare($sql);
             $stmh->bindValue(':filename',  $photoname,  PDO::PARAM_STR );
             $stmh->bindValue(':usename',  $_SESSION['nickname'],  PDO::PARAM_STR );
-            print 'tetette';
+            $stmh->bindValue(':title',  $_POST['title'],  PDO::PARAM_STR );
+            $stmh->bindValue(':comment',  $_POST['comment'],  PDO::PARAM_STR );
+
             $stmh->execute();
             $pdo->commit();
             ?>
