@@ -13,7 +13,7 @@ $resizeX   = 150;
 //$thumbnail_name = "t_" . $_FILES["uploadfile"]["name"] ;
 $thumbnail_name = "t_" . $_SESSION["nickname"] ."_" . $time . ".jpg" ;
 
-$file_dir  = 'C:\xampp\htdocs\qhotocon\photocon\image\\';// Windows
+$file_dir  = $_SERVER["DOCUMENT_ROOT"].'/photocon/image/';// Windows
 //$file_dir  = '/Applications/XAMPP/xamppfiles/htdocs/image/'; // Mac
 //$file_dir  = '/opt/lampp/htdocs/image/';// Linux
 
@@ -21,6 +21,7 @@ $photoname = $_SESSION["nickname"] ."_" . $time . ".jpg";
 $file_path = $file_dir  . $photoname;
 $thumbnail_file_path = $file_dir . $thumbnail_name ;
 
+print $file_path;
 
 if (move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $file_path)) {
 

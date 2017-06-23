@@ -1,4 +1,5 @@
 
+<!--
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,7 @@
     <input type="submit" name="submit" value="検索">
 </form>
 <br>
+-->
 <?php
 
 if(isset($_GET['id'])) {
@@ -51,6 +53,7 @@ if(isset($_GET['id'])) {
 
 ?>
 
-
+<!--
 </body>
 </html>
+-->

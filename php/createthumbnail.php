@@ -15,12 +15,12 @@ $resizeX   = 150;
 //$thumbnail_name = "t_" . $_FILES["uploadfile"]["name"] ;
 $thumbnail_name = "t_"   . "_" . $time . ".jpg" ;
 
-$file_dir  = 'C:\xampp\htdocs\qhotocon\photocon\image\\';// Windows
+$file_dir  =  $_SERVER["DOCUMENT_ROOT"].'/photocon/image/';
 //$file_dir  = '/Applications/XAMPP/xamppfiles/htdocs/image/'; // Mac
 //$file_dir  = '/opt/lampp/htdocs/image/';// Linux
 $file_path = $file_dir  . $time;
-$thumbnail_file_path = $file_dir . $thumbnail_name . ".jpg";
-
+$thumbnail_file_path = $file_dir . $thumbnail_name ;
+print $thumbnail_file_path;
 
 if (move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $file_path)) {
 

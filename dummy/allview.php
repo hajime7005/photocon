@@ -32,30 +32,25 @@ try {
     //コミット
     $pdo->commit();
 
-    ?>
-<div class="row">
-    <?php
 
+print '<div class="row">';
+
+    print $path = 'http://'.$_SERVER["SERVER_NAME"].'/photocon/image/';
     while($row = $stmh -> fetch(PDO::FETCH_ASSOC)) {
         $filename = 't_'.$row['filename'];
 
-        ?>
-    <div class="col-xs-6 col-md-3">
 
-        <!-- xammpの場合-->
-        <a href="http://localhost/qhotocon/photocon/image/<?php print $filename ?>" class="thumbnail" target="_blank">
-            <img src="http://localhost/qhotocon/photocon/image/<?php print $filename ?>">
-        </a>
+    print '<div class="col-xs-6 col-md-3">';
+
+        print '<a href="'.$path.$filename.'" class="thumbnail" target="_blank"><img src="'.$path.$filename.'"></a>';
 
 
 
-    </div>
+    print '</div>';
 
-    <?php
     }
-    ?>
-</div>
-    <?php
+
+print '</div>';
 
 } catch (PDOException $Exception) {
     $pdo->rollBack();
