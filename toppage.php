@@ -55,7 +55,7 @@ if(isset($_SESSION["logined"])){
         <!-- 3.リストの配置 -->
         <ul class="nav navbar-nav">
             <li class="active"><a href="toppage.php">トップ</a></li>
-            <li><a href="./html/entry.html">応募者登録</a></li>
+            <li><a href="php/entry.html">応募者登録</a></li>
 
             <li>
                 <?php
@@ -74,7 +74,7 @@ if(isset($_SESSION["logined"])){
                 ?>
 
                 <p class="navbar-text navbar-right">
-                <a href="./html/login.html" class="btn btn-default">ログイン</a>
+                <a href="php/login.html" class="btn btn-default">ログイン</a>
                 </p>
                 <?php
             }else{
@@ -95,11 +95,12 @@ if(isset($_SESSION["logined"])){
 <!--
 <a href="dummy/divelopperlogin.php">開発用ログイン</a>
 -->
+
 <br>
 <br>
 
 <?php
-require_once('./dummy/allview.php');
+require_once('./php/allview.php');  //サムネ一覧
 ?>
 
 

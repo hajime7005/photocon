@@ -13,7 +13,9 @@ $resizeX   = 150;
 //$thumbnail_name = "t_" . $_FILES["uploadfile"]["name"] ;
 $thumbnail_name = "t_" . $_SESSION["nickname"] ."_" . $time . ".jpg" ;
 
-$file_dir  = $_SERVER["DOCUMENT_ROOT"].'/photocon/image/';// Windows
+$file_dir_pro  = $_SERVER["DOCUMENT_ROOT"].'/photocon/image/';// Windows
+$file_dir = str_replace('html/','',$file_dir_pro);
+
 //$file_dir  = '/Applications/XAMPP/xamppfiles/htdocs/image/'; // Mac
 //$file_dir  = '/opt/lampp/htdocs/image/';// Linux
 

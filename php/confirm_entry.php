@@ -78,7 +78,7 @@
     ?>
 
 
-    <input type="button" value="修正する" onClick="location.href='../html/entry.html'">
+    <input type="button" value="修正する" onClick="location.href='entry.html'">
     <input type="submit" value="登録する">
     <br>
 

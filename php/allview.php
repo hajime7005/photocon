@@ -36,6 +36,7 @@ try {
 print '<div class="row">';
 
     print $path = 'http://'.$_SERVER["SERVER_NAME"].'/photocon/image/';
+    print "<br>";
     while($row = $stmh -> fetch(PDO::FETCH_ASSOC)) {
         $filename = 't_'.$row['filename'];
 
