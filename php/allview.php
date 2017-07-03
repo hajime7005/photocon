@@ -35,20 +35,15 @@ try {
 
 print '<div class="row">';
 
-    print $path = 'http://'.$_SERVER["SERVER_NAME"].'/photocon/image/';
-    print "<br>";
+    $path = 'http://'.$_SERVER["SERVER_NAME"].'/photocon/image/';
     while($row = $stmh -> fetch(PDO::FETCH_ASSOC)) {
+        $file = $row['filename'];
         $filename = 't_'.$row['filename'];
+        print '<div class="col-xs-6 col-md-3">';
+        print '<a href="'.$path.'../php/photodetail.php?photo='.$file.'" class="thumbnail" target="_blank"><img src="'.$path.$filename.'"></a><br>';
 
-
-    print '<div class="col-xs-6 col-md-3">';
-
-        print '<a href="'.$path.$filename.'" class="thumbnail" target="_blank"><img src="'.$path.$filename.'"></a>';
-
-
-
-    print '</div>';
-
+        //print '<input type="button" value="詳細" onClick="location.href=\'http://google.com\'">';
+        print '</div>';
     }
 
 print '</div>';
