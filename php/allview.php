@@ -32,8 +32,10 @@ try {
     //コミット
     $pdo->commit();
 
-
-print '<div class="row">';
+?>
+<div class="container-fluid">
+    <div class="row row-eq-height" style="display: flex; flex-wrap:  wrap">
+        <?php
 
     $path = 'http://'.$_SERVER["SERVER_NAME"].'/photocon/image/';
     while($row = $stmh -> fetch(PDO::FETCH_ASSOC)) {
@@ -45,9 +47,10 @@ print '<div class="row">';
         //print '<input type="button" value="詳細" onClick="location.href=\'http://google.com\'">';
         print '</div>';
     }
-
-print '</div>';
-
+        ?>
+    </div>
+</div>
+<?php
 } catch (PDOException $Exception) {
     $pdo->rollBack();
     print "エラー：" . $Exception->getMessage();

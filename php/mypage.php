@@ -9,8 +9,8 @@ session_start();
     <title>マイページ</title>
 </head>
 <body>
-
-<a href="upload.html">写真を投稿する。</a><BR>
+    <p>ようこそ！<?php print $_SESSION['nickname'] ?> さん</p>
+    <a href="upload.html">写真を投稿する。</a><BR>
 
 
 
