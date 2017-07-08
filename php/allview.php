@@ -42,7 +42,8 @@ try {
         $file = $row['filename'];
         $filename = 't_'.$row['filename'];
         print '<div class="col-xs-6 col-md-3">';
-        print '<a href="'.$path.'../php/photodetail.php?photo='.$file.'" class="thumbnail" target="_blank"><img src="'.$path.$filename.'"></a><br>';
+        print '<a href="'.$path.'../php/photodetail.php?photo='.$file.'" class="thumbnail" target="_blank">'
+                . '<img src="'.$path.$filename.'" width="90%"></a><br>';
 
         //print '<input type="button" value="詳細" onClick="location.href=\'http://google.com\'">';
         print '</div>';

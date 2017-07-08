@@ -18,7 +18,7 @@ print '<img src="'. $path . $file .'"><br>';
     <p>メールアドレス：<input type="text" name="mail"></p>
     <input type="submit" value="投票する！">
     <?php
-    print '<INPUT type="hidden" name="photo" value = "'.$_GET['photo'].'" >';
+        print '<INPUT type="hidden" name="photo" value = "'.$_GET['photo'].'" >';
     ?>
 </form>
 

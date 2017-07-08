@@ -47,7 +47,7 @@
         if($cnt == 1){
             if(!(password_verify($pwd, $hashval))){
                 print 'パスワードが違います';
-                print '<a href="../toppage.php">トップページへ戻る</a>';
+                print '<a href="../index.php">トップページへ戻る</a>';
             }else {
                 print 'ログインが成功しました。<br>';
                 print 'ようこそ　'.$usrname.'　さん<br>';
@@ -57,11 +57,11 @@
                 $_SESSION["usrid"] = $usrid;
                 $_SESSION["nickname"] = $usrname;
 
-                print '<a href="../toppage.php">トップページへ戻る</a>';
+                print '<a href="../index.php">トップページへ戻る</a>';
             }
         }else{
             print 'ログインに失敗しました。';
-            print '<a href="../toppage.php">トップページへ戻る</a>';
+            print '<a href="../index.php">トップページへ戻る</a>';
         }
 /*
     $stmh = $pd -> prepare("SELECT id, name, usename, address, tel FROM entrant WHERE :usename = name,");

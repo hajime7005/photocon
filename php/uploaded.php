@@ -1,6 +1,7 @@
 <?php
 session_start();
 ?>
+<HTML>
 <HEAD>
     <TITLE>PHPのテスト</TITLE>
 </HEAD>
@@ -31,6 +32,7 @@ if (move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $file_path)) {
     $img_path  = $img_dir. $photoname;
     $thumbnail_img_path = $img_dir . $thumbnail_name ;
 
+    print mb_strpos($_FILES['uploadfile']['type'], 'jpeg');
     if ( mb_strpos($_FILES['uploadfile']['type'], 'jpeg') ) {
         $gdimg_in = imagecreatefromjpeg($file_path);
         $ix = imagesx($gdimg_in); $iy = imagesy($gdimg_in);
@@ -83,7 +85,7 @@ if (move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $file_path)) {
             <IMG src="<?=$thumbnail_img_path?>" <?=$size2[3]?>>
             <BR>
             <B><?=$_POST["comment"]?></B><BR>
-            <a href="../toppage.php">トップページに戻る</a>
+            <a href="../index.php">トップページに戻る</a>
 
             <?php
         } catch (PDOException $Exception) {

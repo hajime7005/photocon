@@ -56,7 +56,7 @@ try {
 ?>
     <h1>参加者登録が完了しました。</h1>
 
-    <input type="button" value="トップページへ戻る" onClick="location.href='../toppage.php'">
+    <input type="button" value="トップページへ戻る" onClick="location.href='../index.php'">
     <?php
     session_start();
     $_SESSION["logined"] = true;
