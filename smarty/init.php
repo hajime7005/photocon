@@ -80,7 +80,7 @@ define("_SYSTEM_FLG", true);
 //----------------------------------------------------
 
 // 関連ファイルを設置するディレクトリ
-define( "_PHP_LIBS_DIR", "c:/xampp/php_libs/");
+//define( "_PHP_LIBS_DIR", "c:/xampp/php_libs/");
 //define( "_PHP_LIBS_DIR", "/var/www/photocon/smarty/");
 
 // クラスファイル
