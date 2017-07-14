@@ -8,7 +8,7 @@
 <body>
 
     <p>ようこそ！{$name}</p>
-    <a href="upload.tmp">写真を投稿する。</a><BR>
+    <a href="../php/upload.html">写真を投稿する。</a><BR>
 
 </body>
 </html>
