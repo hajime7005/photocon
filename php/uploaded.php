@@ -97,11 +97,11 @@ if (move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $file_path)) {
         <?php
     } else {
         print "JPEG形式の画像をアップロードしてください。<BR>";
-        print "<a href=\"../toppage.php\">トップページに戻る</a>";
+        print "<a href=\"../index.php\">トップページに戻る</a>";
     }
 } else {
     print "正常にアップロード処理されませんでした。<BR>";
-    print "<a href=\"../toppage.php\">トップページに戻る</a>";
+    print "<a href=\"../index.php\">トップページに戻る</a>";
 }
 ?>
 </BODY>
