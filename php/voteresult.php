@@ -1,5 +1,8 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>作品に投票しました！：笑顔の写真館(仮)</title>
@@ -8,12 +11,13 @@
 
 <?php
 require_once ('connectDBTemplate.php');
+print $_POST['mail'];
 try{
 
     $st = $pd->prepare("SELECT id FROM contributions WHERE filename = :photo "); //SQL文
     $st->bindValue(':photo', $_POST["photo"], PDO::PARAM_STR);
     $st->execute();
-    $pd->commit();
+    //$pd->commit();
 
     foreach ($st as $row){
         $photoID = $row['id'];
