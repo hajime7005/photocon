@@ -5,50 +5,48 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>作品に投票しました！：笑顔の写真館(仮)</title>
+    <title>作品に投票します：笑顔の写真館(仮)</title>
 </head>
 <body>
 
 <?php
 require_once ('connectDBTemplate.php');
-print $_POST['mail'];
 try{
+    
+    //メールアドレスからすでに投票したことがある人か確認
+    $st1 = $pd->prepare("SELECT confirm FROM vote WHERE voter = :mail "); //SQL文
+    $st1->bindValue(':mail', $_POST['mail'], PDO::PARAM_STR);
+    $st1->execute();  
+    $lines = $st1->rowCount();
+    $confirm = $st1->fetchColumn();
+  
+    //これから投票される写真のIDを取得
+    $st2 = $pd->prepare("SELECT id FROM contributions WHERE filename = :photoname "); //SQL文
+    $st2->bindValue(':photoname', $_POST['photoname'], PDO::PARAM_STR);
+    $st2->execute();
+    
+    
+    $photoID = $st2->fetchColumn();
+    
 
-    $st = $pd->prepare("SELECT id FROM contributions WHERE filename = :photo "); //SQL文
-    $st->bindValue(':photo', $_POST["photo"], PDO::PARAM_STR);
-    $st->execute();
-    //$pd->commit();
+    if($lines == 0){
+        //まだ投票したことがない人ならば
+       
+        print $rand = rand(10000,99999);
+        $st3 = $pd->prepare("INSERT INTO vote (entryid, voter, confirm) VALUES (:entryid , :voter , :confirm)"); //SQL文
+        $st3->bindValue(':entryid', $photoID, PDO::PARAM_INT);
+        $st3->bindValue(':voter', $_POST['mail'], PDO::PARAM_STR);
+        $st3->bindValue(':confirm', $rand, PDO::PARAM_INT);
+        $st3->execute();
 
-    foreach ($st as $row){
-        $photoID = $row['id'];
-    }
-
-
-    $st = $pd->prepare("SELECT COUNT(*) FROM vote WHERE voter = :mail GROUP BY voter"); //SQL文
-    $st->bindValue(':mail', $_POST["mail"], PDO::PARAM_STR);
-    $st->execute();
-    $pd->commit();
-    print $colcount = $st->columnCount();   //返ってきた列数
-
-    $colcount = 0;
-    if($colcount === 0){
-        //まだ投票したことがない人
-
-        $stm = $pd->prepare("INSERT INTO vote (entryid, voter, confirm) VALUES (:entryid , :voter , FLOOR(1 + RAND() * 100000)) "); //SQL文
-        $stm->bindValue(':entryid', $photoID, PDO::PARAM_STR);
-        print $_POST['photo'];
-        $stm->bindValue(':entryid', $_POST['mail'], PDO::PARAM_STR);
-        print $_POST['mail'];
-        $stm->execute();
+        
+        $st = $pd->prepare("SELECT voteid, entryid, voter, confirm FROM vote WHERE entryid = :entryid AND voter = :voter "); //SQL文
+        $st->bindValue(':entryid', $photoID, PDO::PARAM_INT);
+        $st->bindValue(':voter', $_POST['mail'], PDO::PARAM_STR);
+        $st->execute();
         $pd->commit();
 
-        $stmh = $pd->prepare("SELECT voteid, entryid, voter, confirm FROM vote WHERE entryid = :entryid, voter = :voter"); //SQL文
-        $stmh->bindValue(':entryid', $photoID, PDO::PARAM_STR);
-        $stmh->bindValue(':entryid', $_POST['mail'], PDO::PARAM_STR);
-        $stmh->execute();
-        $pd->commit();
-
-        foreach ($stmh as $row){
+        foreach ($st as $row){
             $vid = $row['voteid'];
             $eid = $row['entryid'];
             $vot = $row['voter'];
@@ -60,36 +58,60 @@ try{
         print '<p>初めての投票なので認証を行います</p>';
         print '<p>送信されたメールを確認してください。</p>';
 
-        print '<a href="confirm.php?id='. $confirm . '&key='. $key .'">確認画面へ(暫定)</a>';
-        print '<a href="../toppage.php">トップページへ戻る</a>';
+        print '<a href="confirm.php?id='. $confirm . '&key='. $key .'">確認画面へ(暫定)</a><br>';
+        print '<a href="../index.php">トップページへ戻る</a>';
 
-    }elseif ($colcount >= 3){
+    }else if($lines == 3){
+        
+        //すでに3件投票している人の場合
+        print "<p>すでに3件投票しているので、もう、投票できません</p>";
+        print "<a href='../index.php'>トップページへ戻る</a>";
+        
+    }else if($confirm != 0){
+        
+        //初回投票確認を済ませていない人の場合
+        $st = $pd->prepare("SELECT voteid, entryid, voter, confirm FROM vote WHERE entryid = :entryid, voter = :voter"); //SQL文
+        $st->bindValue(':entryid', $photoID, PDO::PARAM_STR);
+        $st->bindValue(':voter', $_POST['mail'], PDO::PARAM_STR);
+        $st->execute();
+        $pd->commit();
 
-        //すでに３作品に投票している人
-        print '<p>すでに3作品以上に投票しています。</p>';
-        print '<a href="../toppage.php">トップページへ戻る</a>';
+        foreach ($st as $row){
+            $vid = $row['voteid'];
+            $eid = $row['entryid'];
+            $vot = $row['voter'];
+            $confirm = $row['confirm'];
+        }
 
+        $key = md5($vid.$eid.$vot);
+
+        print '<p>初めての投票なので認証を行います</p>';
+        print '<p>送信されたメールを確認してください。</p>';
+
+        print '<a href="confirm.php?id='. $confirm . '&key='. $key .'">確認画面へ(暫定)</a><br>';
+        print '<a href="../index.php">トップページへ戻る</a>';
+    
+        
     }else{
-        print '<p>投票が完了しました。</p>';
-        print '<a href="../toppage.php">トップページへ戻る</a>';
-    }
+        
+        //初回投稿確認を済ませ、投票の数も3件未満の人の場合
+        $st = $pd->prepare("INSERT INTO vote (entryid, voter, confirm) VALUES (:entryid , :voter , 0)"); //SQL文
+        $st->bindValue(':entryid', $photoID, PDO::PARAM_STR);
+        $st->bindValue(':voter', $_POST['mail'], PDO::PARAM_STR);
+        $st->execute();
+        $pd->commit();
+        
+        print '<p>投票が完了しました</p>';
+        print '<a href="../index.php">トップページへ戻る</a>';
 
+    }
+    
 } catch (PDOException $Exception) {
-    $pdo->rollBack();
+    $pd->rollBack();
     print "エラー：" . $Exception->getMessage();
 }
 
 ?>
-
-<p>作品に投稿</p>
-<br><br>
-
-<form id="mailaddress" action="voteresult.php" method="post" >
-
-    <p>メールアドレス：<input type="text" name="mail"></p>
-
-    <input type="submit" value="投票する！">
-</form>
 
 </body>
 </html>
