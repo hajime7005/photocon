@@ -44,7 +44,6 @@ if(isset($_SESSION["logined"])){
 </head>
 <body>
 
-
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
@@ -121,8 +120,9 @@ try {
         $title = $row['title'];
         $comment = $row['comment'];
         $user = $row['usename'];
+        $entid = $row['id'];
         print '<div class="col-xs-6 col-md-3">';
-        print '<a href="'.$path.'../php/photodetail.php?photo='.$file.'&title='.$title.'&comment='.$comment.'&user='.$user
+        print '<a href="'.$path.'../php/photodetail.php?photo='.$file.'&title='.$title.'&comment='.$comment.'&entid='.$entid.'&user='.$user
                 . '" class="thumbnail" target="_blank">'
                 . '<img src="'.$path.$filename.'" width="90%"></a><br>';
 
