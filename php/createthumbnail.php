@@ -9,7 +9,7 @@ session_start();
 
 $time = date('ymdHis' ,$timestamp = time());
 
-$resizeX   = 150;
+$resizeX = 600;
 $thumbnail_name = "t_"   . "_" . $time . ".jpg" ;
 
 $file_dir  =  $_SERVER["DOCUMENT_ROOT"].'/photocon/image/';
@@ -39,7 +39,8 @@ if (move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $file_path)) {
         <IMG src="<?=$img_path?>" <?=$size[3]?>>
         <IMG src="<?=$thumbnail_img_path?>" <?=$size2[3]?>>
         <BR>
-        <B><?=$_POST["comment"]?></B><BR>
+        <p>タイトル：<?=$_POST["title"]?></p>       
+        <p>コメント：<?=$_POST["comment"]?></p>
         <a href="../index.php">トップページに戻る</a>
         <?php
     } else {

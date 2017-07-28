@@ -4,25 +4,9 @@
 
 <?php
 
-$db_user = "photocon";	// ユーザー名
-$db_pass = "ju78iklo";	// パスワード
-$db_host = "localhost";	// ホスト名
-$db_name = "photocon";	// データベース名
-$db_type = "mysql";	// データベースの種類
-
-
-$dsn = "$db_type:host=$db_host;dbname=$db_name;charset=utf8";
+require_once './php/connectDBTemplate.php';
 
 try {
-    $pdo = new PDO($dsn, $db_user,$db_pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-} catch(PDOException $Exception) {
-    die('エラー :' . $Exception->getMessage());
-}
-
-try {
-    $pdo->beginTransaction();
 
     $sql = "SELECT id, title, filename, usename, comment, uploaddate FROM  contributions ";
     $stmh = $pdo->prepare($sql);
@@ -30,7 +14,7 @@ try {
     //ステートメントを実行する
     $stmh->execute();
     //コミット
-    $pdo->commit();
+    $pd->commit();
 
 ?>
 <div class="container-fluid">
@@ -41,11 +25,14 @@ try {
     while($row = $stmh -> fetch(PDO::FETCH_ASSOC)) {
         $file = $row['filename'];
         $filename = 't_'.$row['filename'];
+        $title = $row['title'];
+        $comment = $row['comment'];
+        $user = $row['usename'];
         print '<div class="col-xs-6 col-md-3">';
-        print '<a href="'.$path.'../php/photodetail.php?photo='.$file.'" class="thumbnail" target="_blank">'
+        print '<a href="'.$path.'../php/photodetail.php?photo='.$file.'&title='.$title.'&comment='.$comment.'&user='.$user
+                . '" class="thumbnail" target="_blank">'
                 . '<img src="'.$path.$filename.'" width="90%"></a><br>';
 
-        //print '<input type="button" value="詳細" onClick="location.href=\'http://google.com\'">';
         print '</div>';
     }
         ?>

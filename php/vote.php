@@ -11,7 +11,7 @@
 <?php
 $path ='http://'.$_SERVER["SERVER_NAME"].'/photocon/image/';
 $file = $_GET['photo'];
-print '<img src="'. $path . $file .'"><br>';
+print '<img src="'. $path . $file .'" width="80%"><br>';
 ?>
 
 <form id="mailaddress" action="voteresult.php" method="post" >
@@ -19,7 +19,6 @@ print '<img src="'. $path . $file .'"><br>';
     <input type="submit" value="投票する！">
     <?php
     print '<INPUT type="hidden" name="photoname" value = "'.$file.'" >';
-    print '<p>'.$file.'</p>'
     ?>
 </form>
 
