@@ -15,7 +15,6 @@ try {
     $pdo = new PDO($dsn, $db_user,$db_pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    print "接続しました... <br>";
 } catch(PDOException $Exception) {
     die('エラー :' . $Exception->getMessage());
 }

@@ -56,11 +56,12 @@ if (move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $file_path)) {
             $pd->commit();
             ?>
 
-            ファイルアップロードを完了しました。<BR>
+            ファイルアップロードを完了しました。<br>
             <IMG src="<?=$img_path?>" <?=$size[3]?>>
             <IMG src="<?=$thumbnail_img_path?>" <?=$size2[3]?>>
-            <BR>
-            <B><?=$_POST["comment"]?></B><BR>
+            <br>
+            <p><?=$_POST["comment"]?></p>
+            <a href="upload.html">続けて写真を投稿する</a><br>            
             <a href="../index.php">トップページに戻る</a>
 
             <?php

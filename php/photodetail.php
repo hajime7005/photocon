@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,8 +34,10 @@ try{
  print '<p>コメント：'.$_GET['comment'].'</p>';
  print '<p>投稿者：'.$_GET['user'].'</p>';
  print '<p>投票ポイント：'.$point.'</p>';
- 
- print '<input type="button" onclick="location.href=\'vote.php?photo='.$file.'\'"value="投票する">';
+ if(isset($_SESSION['logined'])){
+    print '<input type="button" onclick="location.href=\'vote.php?photo='.$file.'\'"value="投票する"><br><br>';
+ }
+ print '<a href="../index.php">トップページへ戻る</a>';
 ?>
 </body>
 </html>

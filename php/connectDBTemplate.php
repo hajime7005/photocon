@@ -16,15 +16,6 @@ try {
     $pd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $pd->beginTransaction();
 
-    /*
-
-    $stmh = $pd->prepare("SELECT id , pass , usename FROM userlist WHERE :usename = usename "); //SQL文
-    $stmh->bindValue(':usename', $_POST["nickname"], PDO::PARAM_STR);
-
-    $stmh->execute();
-    $pd->commit();
-    */
-
 }catch(PDOException $Exception) {
     $pd -> rollBack();
     print "エラー：".$Exception -> getMessage();

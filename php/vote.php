@@ -16,7 +16,8 @@ print '<img src="'. $path . $file .'" width="80%"><br>';
 
 <form id="mailaddress" action="voteresult.php" method="post" >
     <p>メールアドレス：<input type="text" name="mail"></p>
-    <input type="submit" value="投票する！">
+    <input type="submit" value="投票する！"><br>
+    <a href="../index.php">トップページへ戻る</a>
     <?php
     print '<INPUT type="hidden" name="photoname" value = "'.$file.'" >';
     ?>
